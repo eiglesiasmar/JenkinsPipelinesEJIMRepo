@@ -1,0 +1,5 @@
+pipeline {
+    stage('MyBuild'){
+        echo "Hello EJIM"
+    }
+}
