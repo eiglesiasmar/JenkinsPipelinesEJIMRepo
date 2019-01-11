@@ -1,5 +1,7 @@
 pipeline {
-    stage('MyBuild'){
-        echo "Hello EJIM"
+    stages{
+        stage('MyBuild'){
+            echo "Hello EJIM"
+        }
     }
 }
