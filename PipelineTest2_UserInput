@@ -11,7 +11,7 @@ pipeline {
 				script {
 					 def userInput = input(id: 'userInput', message: 'Run Tests?',
 					 parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
-						description:'describing choices', name:'nameChoice', choices: "Yes\nNo"]
+						description:'describing choices', name:'testChoice', choices: "Yes\nNo"]
 					 ])
 					println(userInput); 
 				}
@@ -22,7 +22,7 @@ pipeline {
 		stage ('Conditional Test') {
 			when {
 				// Only say hello if a "greeting" is requested
-				expression { params.userInput == 'Yes' }
+				expression { params.testChoice == 'Yes' }
 			}
 			steps {
 					echo "Running Tests"
