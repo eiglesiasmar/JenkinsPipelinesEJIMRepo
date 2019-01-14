@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    parameters {
-            string(name: 'custom_var', defaultValue: '')
+    environment {
+            custom_var = ''
     }
     stages{
         stage('MyBuild'){
@@ -27,7 +27,7 @@ pipeline {
 		stage ('Conditional Test') {
 			when {
 				// Only say hello if a "greeting" is requested
-				expression { ${env.custom_var} == 'Yes' }
+				expression { env.custom_var == 'Yes' }
 			}
 			steps {
 					echo "Running Tests"
