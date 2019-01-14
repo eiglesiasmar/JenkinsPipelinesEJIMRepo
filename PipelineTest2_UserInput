@@ -18,7 +18,7 @@ pipeline {
 					 ])
 					println(userInput);
 					env.custom_var=userInput;
-					println(env.custom_var);
+					println("${env.custom_var}");
 				}
 			}
 
