@@ -17,7 +17,7 @@ pipeline {
 						description:'describing choices', name:'testChoice', choices: "Yes\nNo"]
 					 ])
 					println(userInput);
-					env.custom_var=userInput;
+					env.custom_var=userInput['testChoice'];
 					println("${env.custom_var}");
 				}
 			}
