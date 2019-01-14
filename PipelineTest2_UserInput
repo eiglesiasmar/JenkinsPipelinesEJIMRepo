@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+            string(name: 'custom_var', defaultValue: '')
+    }
     stages{
         stage('MyBuild'){
             steps{
@@ -13,7 +16,9 @@ pipeline {
 					 parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
 						description:'describing choices', name:'testChoice', choices: "Yes\nNo"]
 					 ])
-					println(userInput); 
+					println(userInput);
+					env.custom_var=userInput['testChoice'];
+					println(env.custom_var);
 				}
 			}
 
@@ -22,7 +27,7 @@ pipeline {
 		stage ('Conditional Test') {
 			when {
 				// Only say hello if a "greeting" is requested
-				expression { userInput['testChoice'] == 'Yes' }
+				expression { env.custom_var == 'Yes' }
 			}
 			steps {
 					echo "Running Tests"
