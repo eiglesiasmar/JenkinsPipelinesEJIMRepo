@@ -17,8 +17,8 @@ pipeline {
 						description:'describing choices', name:'testChoice', choices: "Yes\nNo"]
 					 ])
 					println(userInput);
-					env.custom_var = userInput;
-					println("${env.custom_var}");
+					custom_var = userInput;
+					println(custom_var);
 				}
 			}
 
@@ -27,7 +27,7 @@ pipeline {
 		stage ('Conditional Test') {
 			when {
 				// Only say hello if a "greeting" is requested
-				expression { env.custom_var == 'Yes' }
+				expression { custom_var == 'Yes' }
 			}
 			steps {
 					echo "Running Tests"
