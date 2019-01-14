@@ -22,7 +22,7 @@ pipeline {
 		stage ('Conditional Test') {
 			when {
 				// Only say hello if a "greeting" is requested
-				expression { params.testChoice == 'Yes' }
+				expression { userInput['testChoice'] == 'Yes' }
 			}
 			steps {
 					echo "Running Tests"
