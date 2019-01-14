@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    stages{
+        stage('MyBuild'){
+            steps{
+                echo "Hello EJIM"
+            }
+        }
+		stage('Get User input') {
+			steps {
+				script {
+					 def userInput = input(id: 'userInput', message: 'Run Tests?',
+					 parameters: [[$class: 'ChoiceParameterDefinition', defaultValue: 'strDef', 
+						description:'describing choices', name:'nameChoice', choices: "Yes\nNo"]
+					 ])
+					println(userInput); 
+				}
+			}
+
+		}		
+
+		stage ('Conditional Test') {
+			when {
+				// Only say hello if a "greeting" is requested
+				expression { params.userInput == 'Yes' }
+			}
+			steps {
+					echo "Running Tests"
+			}
+		}
+		
+    }
+}
