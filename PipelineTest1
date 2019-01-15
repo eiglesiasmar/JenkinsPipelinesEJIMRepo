@@ -4,6 +4,7 @@ pipeline {
         stage('MyBuild'){
             steps{
                 echo "Hello EJIM"
+                bat 'wmic computersystem get name'
             }
         }
     }
